@@ -1,7 +1,32 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} **/
+const nextConfig = {
+  images: {
+    domains: ['randomuser.me', 'cdn.sanity.io'], // Correctly combining domains
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'randomuser.me',
+        pathname: '/api/portraits/**', // Fixed pathname
+      },
+    ],
+  },
+};
+
+const rules = [
+  {
+    permission: 'update',
+    grants: ['editor', 'admin'],
+  },
+];
+
+export { rules };
+export default nextConfig;
+
+{/**
+  import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  /* config options here 
   images: {
     remotePatterns: [
       {
@@ -14,4 +39,4 @@ const nextConfig: NextConfig = {
   }
 };
 
-export default nextConfig;
+export default nextConfig; **/}

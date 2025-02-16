@@ -42,10 +42,11 @@ export default function ProductsGrid() {
         setIsChange(!isChange);
         setCreateProduct(null);
       }
-    } catch (error) {
-      console.error("Creation failed:", error);
+    } catch (error: any) {
+      console.error("Creation failed:", error.message || error);
     }
   };
+  
 
   // State for Products and Category
   const [productArray, setProductsArray] = useState<ICard[]>([]);
@@ -131,7 +132,10 @@ export default function ProductsGrid() {
             </CardHeader>
             <CardContent className="p-4">
               <CardTitle className="line-clamp-1">{product.title}</CardTitle>
-              <p className="text-lg font-semibold">${product.price.toFixed(2)}</p>
+              <p className="text-lg font-semibold">
+  ${product.price?.toFixed(2) ?? "0.00"}
+</p>
+
               <p className="text-sm text-muted-foreground mt-1">Stock: {product.inventory}</p>
             </CardContent>
             <CardFooter className="border-t p-4">
